@@ -65,12 +65,11 @@ if [ $1 = 0 ]; then
 fi
 
 %check
-%ifnarch %{arm}
+%if ! 0%{?qemu_user_space_build}
 echo ============TESTING===============
 make check
 echo ============END TESTING===========
 %endif
-
 %clean
 rm -rf ${RPM_BUILD_ROOT}
 
