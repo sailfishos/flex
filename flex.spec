@@ -1,17 +1,13 @@
 #specfile originally created for Fedora, modified for Moblin Linux
 Summary: A tool for creating scanners (text pattern recognizers)
 Name: flex
-Version: 2.5.35
-Release: 2
+Version: 2.5.37
+Release: 1
 License: BSD
 Group: Development/Tools
 URL: http://flex.sourceforge.net/
 Source: http://prdownloads.sourceforge.net/flex/flex-%{version}.tar.bz2
-Patch0: flex-2.5.35-sign.patch
-# borrowed from fc12
-Patch1: flex-2.5.35-hardening.patch
-Patch2: flex-2.5.35-gcc44.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Patch0: flex-2.5.36-bison-2.6.1.patch
 Requires: m4
 BuildRequires: gettext bison m4
 Requires(post): /sbin/install-info
@@ -34,8 +30,6 @@ application development.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 %configure --disable-dependency-tracking CFLAGS="-fPIC $RPM_OPT_FLAGS"
@@ -61,7 +55,7 @@ rm -f $RPM_BUILD_ROOT/%{_infodir}/dir
 
 %preun
 if [ $1 = 0 ]; then
-    [ -e %{_infodir}/%{name.info} ] && /sbin/install-info --delete %{_infodir}/%{name}.info %{_infodir}/dir ||:
+    [ -e %{_infodir}/%{name}.info ] && /sbin/install-info --delete %{_infodir}/%{name}.info %{_infodir}/dir ||:
 fi
 
 %check
@@ -70,12 +64,10 @@ echo ============TESTING===============
 make check
 echo ============END TESTING===========
 %endif
-%clean
-rm -rf ${RPM_BUILD_ROOT}
 
 %files -f flex.lang
 %defattr(-,root,root)
-%doc COPYING NEWS README
+%doc %{_datadir}/doc/flex/
 %{_bindir}/*
 %doc %{_mandir}/man1/*
 %{_libdir}/*.a

@@ -1,3 +1,9 @@
+* Sat Apr 20 2013 Marko Saukko <marko.saukko@jollamobile.com> - 2.5.37
+- Update to version 2.5.37
+- Drop: flex-2.5.35-sign.patch, flex-2.5.35-gcc44.patch, 
+  flex-2.5.35-hardening.patch
+- Add: flex-2.5.36-bison-2.6.1.patch
+
 * Fri Jan 20 2012 Carsten Munk <carsten.munk@gmail.com> - 2.5.35
 - Switch from ifnarch to %if ! 0%{?qemu_user_space_build}
 
