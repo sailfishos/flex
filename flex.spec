@@ -8,6 +8,7 @@ Group: Development/Tools
 URL: http://flex.sourceforge.net/
 Source: http://prdownloads.sourceforge.net/flex/flex-%{version}.tar.bz2
 Patch0: flex-2.5.36-bison-2.6.1.patch
+Patch1 :flex-aarch64.patch
 Requires: m4
 BuildRequires: gettext bison m4
 Requires(post): /sbin/install-info
@@ -30,6 +31,7 @@ application development.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %configure --disable-dependency-tracking CFLAGS="-fPIC $RPM_OPT_FLAGS"
