@@ -1,11 +1,10 @@
 Summary: A tool for creating scanners (text pattern recognizers)
 Name: flex
-Version: 2.6.1
+Version: 2.6.4
 Release: 1
 License: BSD
-Group: Development/Tools
-URL: http://flex.sourceforge.net/
-Source: http://prdownloads.sourceforge.net/flex/flex-%{version}.tar.bz2
+URL: https://github.com/westes/flex
+Source: %{name}-%{version}.tar.gz
 Requires: m4
 BuildRequires: gettext >= 0.19
 BuildRequires: bison
@@ -40,23 +39,27 @@ application development.
 
 %package devel
 Summary: Libraries for flex scanner generator
-Group: Development/Tools
 
 %description devel
 This package contains the library with default implementations of
 `main' and `yywrap' functions that the client binary can choose to use
 instead of implementing their own.
 
+%package doc
+Summary: Documentation for flex scanner generator
+
+%description doc
+This package contains documentation for flex scanner generator.
+
 %prep
-%setup -q -n %{name}-%{version}/%{name}
+%autosetup -n %{name}-%{version}/%{name}
 
 %build
-./autogen.sh
+%autogen
 %configure --disable-dependency-tracking CFLAGS="-fPIC $RPM_OPT_FLAGS"
 make %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
 make DESTDIR=$RPM_BUILD_ROOT install
 rm -f $RPM_BUILD_ROOT/%{_infodir}/dir
 
@@ -98,13 +101,16 @@ echo ============END TESTING===========
 
 %files -f flex.lang
 %defattr(-,root,root)
-%doc %{_datadir}/doc/flex/
+%license COPYING
 %{_bindir}/*
-%doc %{_mandir}/man1/*
 %{_includedir}/FlexLexer.h
-%doc %{_infodir}/flex.info*
 
 %files devel
 %defattr(-,root,root)
 %{_libdir}/*.a
 
+%files doc
+%defattr(-,root,root)
+%doc %{_datadir}/doc/flex/
+%doc %{_mandir}/man1/*
+%doc %{_infodir}/flex.info*
