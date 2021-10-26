@@ -20,6 +20,9 @@ BuildRequires:  texinfo
 # flex/build-aux/missing: line 81: flex: command not found
 BuildRequires: flex
 
+# Needed for tests
+BuildRequires: libstd++-devel
+
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 
