@@ -21,7 +21,7 @@ BuildRequires:  texinfo
 BuildRequires: flex
 
 # Needed for tests
-BuildRequires: libstd++-devel
+BuildRequires: libstdc++-devel
 
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
