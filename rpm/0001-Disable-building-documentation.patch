@@ -1,0 +1,21 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@jolla.com>
+Date: Mon, 3 Mar 2025 19:22:34 +0200
+Subject: [PATCH] Disable building documentation
+
+---
+ Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index 638c54964f01cf781db6d756993925a7b45ef3c1..9db34204a65f42ee726e866729788ed478d65b93 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -43,7 +43,6 @@ EXTRA_DIST = \
+ 
+ SUBDIRS = \
+ 	src \
+-	doc \
+ 	examples \
+ 	po \
+ 	tests \
